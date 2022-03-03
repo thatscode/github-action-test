@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Read docker image address from issue, pull and restore the image into another repository.
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: from repository A to repository B
+      uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ${{ github.event.issue}}
+        source_username: ${{ secrets.DOCKER_USERNAME }}
+        source_password: ${{ secrets.DOCKER_PASSWORD }}
+        target_repository: registry.cn-shanghai.aliyuncs.com/user/nginx:latest
+        target_username: ${{ secrets.ALIYUN_USERNAME }}
+        target_password: ${{ secrets.ALIYUN_PASSWORD }}
+
+---- WIP ----
