@@ -8,7 +8,8 @@ on:
       - labeled
 
 jobs:
-  build:
+  transfer:
+    if: github.event.label.name == 'transfer-docker-image'
     runs-on: ubuntu-latest
     steps:
     - name: from repository A to repository B
